@@ -1,4 +1,4 @@
-package MySQLConnect;
+
 
 import java.sql.*;
 
@@ -33,6 +33,18 @@ public class MySQLConnect {
   
         }
     }
+
+
+    void AddToJson(int timeCol, int dataCol) {
+        try {
+            Array timeArr = rs.getArray(timeCol);
+            Array dataArr = rs.getArray(dataCol);
+        } catch (SQLException e) {
+
+        }
+        
+    }
+
 
     void PrintResultSet() {
     	try {
