@@ -19,7 +19,8 @@ class Extract {
         String queryString = "SELECT * FROM lightSensor";
 
         conn.ExecuteQuery(queryString);
-        conn.PrintResultSet();
+        //conn.PrintResultSet();
+        conn.AddToJson(2,3);
 
     }
 }

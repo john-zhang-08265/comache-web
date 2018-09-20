@@ -1,6 +1,10 @@
 
 
 import java.sql.*;
+import java.io.*;
+
+import com.fasterxml.jackson.databind.*;
+import com.fasterxml.jackson.core.*;
 
 public class MySQLConnect {
 
@@ -21,8 +25,6 @@ public class MySQLConnect {
     
 
     void ExecuteQuery(String queryString) {
-        //IMPLEMENT
-        //RETURN RESULT SET
         rs = null;
         try {
         	System.out.println("EXECUTING QUERY");
@@ -39,10 +41,19 @@ public class MySQLConnect {
         try {
             Array timeArr = rs.getArray(timeCol);
             Array dataArr = rs.getArray(dataCol);
+
+            try {
+            	ObjectMapper objectMapper = new ObjectMapper();
+            	//NEED TO CHANGE THIS
+            	objectMapper.writeValue(new File("/../Json-Resources/car.json"), timeArr);
+            } catch (IOException ioe) {
+            	System.out.println("ERROR WRITING JSON");
+            }
+            
+
         } catch (SQLException e) {
 
         }
-        
     }
 
 
