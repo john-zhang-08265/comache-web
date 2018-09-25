@@ -1,4 +1,7 @@
 var mysql = require('mysql');
+var fs = require('fs');
+
+var writeFileID = process.argv[2];
 
 var con = mysql.createConnection({
   host: "localhost",
@@ -27,5 +30,8 @@ con.query(queryString, function(err, result) {
     data.push(timeValue)
   });
 
-  console.log(data);
+  fs.writeFile('../Json-Resources/'+writeFileID+'.json', JSON.stringify(data, null, ' '), (err) => {
+    if (err) throw err;
+  	console.log('The file has been saved!');
+  });
 });
