@@ -10,7 +10,7 @@ var path = require('path');
 
 app.get('/*', (req, res) => {
 	console.log(req.url);
-	res.sendFile(path.join(__dirname + '/index.html'));
+	res.sendFile(path.join(__dirname + req.url));
 });
 
 app.post('/', function (req, res) {
