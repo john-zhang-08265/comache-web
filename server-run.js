@@ -1,20 +1,32 @@
-const http = require('http');
+const express = require('express');
+const app = express();
 const port = 3000;
 const fs = require('fs');
 
-const server = http.createServer(requestHandler);
+/*
+*	HTTP COMMANDS
+*/
 
-const requestHandler = (request, response) => {
-  console.log(request.url);
-  fs.readFile('Json-Resources'+request.url+'.json', (err, contents) => {
-  	response.end(contents)
-  });
-}
+app.get('/*', (req, res) => {
+	console.log(req.url);
+});
 
+app.post('/', function (req, res) {
+  res.send('Got a POST request');
+});
 
-server.listen(port, (err) => {
-  if (err) {
-    return console.log('something bad happened', err)
-  }
-  console.log(`server is listening on ${port}`)
+app.put('/user', function (req, res) {
+  res.send('Got a PUT request at /user');
+});
+
+app.delete('/user', function (req, res) {
+  res.send('Got a DELETE request at /user');
+});
+
+/*
+*	LISTENS TO HTTP PORT
+*/
+
+app.listen(port, () => {
+	console.log(`Example app listening on port ${port}!`)
 });
