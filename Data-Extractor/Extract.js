@@ -15,7 +15,7 @@ con.connect(function(err) {
   console.log("Connected!");
 });
 
-var queryString = "SELECT * FROM lightSensor";
+var queryString = "SELECT * FROM lightSensor LIMIT 100";
 
 con.query(queryString, function(err, result) {
 
@@ -35,3 +35,95 @@ con.query(queryString, function(err, result) {
   	console.log('The file has been saved!');
   });
 });
+
+/*
+* CHART JSON STRUCTURE
+*
+*
+*
+*
+
+
+    var color = Chart.helpers.color;
+    var config = {
+      type: 'line',
+      data: {
+        datasets: [{
+          label: 'Dataset with string point data',
+          backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
+          borderColor: window.chartColors.red,
+          fill: false,
+          data: [{
+            x: time,
+            y: val
+          }, {
+            x: time,
+            y: val
+          }, {
+            x: time,
+            y: val
+          }, {
+            x: time,
+            y: val
+          }],
+        }, {
+          label: 'Dataset with date object point data',
+          backgroundColor: color(window.chartColors.blue).alpha(0.5).rgbString(),
+          borderColor: window.chartColors.blue,
+          fill: false,
+          data: [{
+            x: newDate(0),
+            y: randomScalingFactor()
+          }, {
+            x: newDate(2),
+            y: randomScalingFactor()
+          }, {
+            x: newDate(4),
+            y: randomScalingFactor()
+          }, {
+            x: newDate(5),
+            y: randomScalingFactor()
+          }]
+        }]
+      },
+      options: {
+        responsive: true,
+        title: {
+          display: true,
+          text: 'Chart.js Time Point Data'
+        },
+        scales: {
+          xAxes: [{
+            type: 'time',
+            display: true,
+            scaleLabel: {
+              display: true,
+              labelString: 'Date'
+            },
+            ticks: {
+              major: {
+                fontStyle: 'bold',
+                fontColor: '#FF0000'
+              }
+            }
+          }],
+          yAxes: [{
+            display: true,
+            scaleLabel: {
+              display: true,
+              labelString: 'value'
+            }
+          }]
+        }
+      }
+    };
+
+    window.onload = function() {
+      var ctx = document.getElementById('canvas').getContext('2d');
+      window.myLine = new Chart(ctx, config);
+    };
+
+
+*/
+
+

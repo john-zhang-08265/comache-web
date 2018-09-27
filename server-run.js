@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const port = 3000;
 const fs = require('fs');
+var path = require('path');
 
 /*
 *	HTTP COMMANDS
@@ -9,6 +10,7 @@ const fs = require('fs');
 
 app.get('/*', (req, res) => {
 	console.log(req.url);
+	res.sendFile(path.join(__dirname + '/index.html'));
 });
 
 app.post('/', function (req, res) {

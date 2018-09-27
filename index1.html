@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<title>Time Scale Point Data</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
+</head>
+
+<body>
+	HELLO WORLD
+	<div>
+	<canvas id="canvas"  class="chartjs-render-monitor" style="display: block; width:500px; height: 241px;"></canvas>
+	</div>
+
+	<script>
+		//JAVASCRIPT
+    	var config = {
+      type: 'line',
+      data: {
+        datasets: [{
+          label: 'Dataset with string point data',
+          fill: false,
+          data: [{x:1,y:1},{x:2,y:2}],
+        }]
+      },
+      options: {
+        responsive: true,
+        title: {
+          display: true,
+          text: 'Chart.js Time Point Data'
+        },
+        scales: {
+          xAxes: [{
+            type: 'time',
+            display: true,
+            scaleLabel: {
+              display: true,
+              labelString: 'Date'
+            },
+            ticks: {
+              major: {
+                fontStyle: 'bold',
+                fontColor: '#FF0000'
+              }
+            }
+          }],
+          yAxes: [{
+            display: true,
+            scaleLabel: {
+              display: true,
+              labelString: 'value'
+            }
+          }]
+        }
+      }
+    };
+
+    	
+      	var ctx = document.getElementById('canvas').getContext('2d');
+      	console.log("TRAME1");
+      	var lineChart = new Chart(ctx, config);
+      	console.log(lineChart);
+   
+
+
+      
+    
+
+
+	</script>
+
+</body>
+
+</html>
+
