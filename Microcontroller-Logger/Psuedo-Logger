@@ -1,0 +1,16 @@
+//PSUEDOCODE
+
+//SETUP
+	Read temperature data and time stamp (Using a moving average filter)
+	Store data in buffer
+	Connect to Wifi
+	Ping RDS endpoint for IP address
+	Connect to AWS RDS through IP address
+	Write buffer data to RDS
+	If sucess, purge buffer
+	If either wifi or database fails to connect, store in buffer
+	Sleep
+
+//LOOP
+	Time for 5 mins
+	Reboot
