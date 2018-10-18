@@ -1,63 +1,41 @@
-  #include <ESP8266WiFi.h>
+#include <ESP8266WiFi.h>
+#include <MySQL_Connection.h>
+#include <MySQL_Cursor.h>
 
-const char* ssid = "vodafone3EBA";
-const char* password = "9SXGZ3M4AE"; 
-const char* host = "www.handsontec.com";
- 
-  void setup() {
-  // put your setup code here, to run once:
+IPAddress server_addr(13,238,180,245);   // IP of the MySQL server
+char user[] = "root";                     // MySQL user login username
+char password[] = "root1234";    
+
+WiFiClient client;
+MySQL_Connection conn((Client *)&client);
+
+void setup()
+{
+  int deviceID = 1;
+  double val = 0; //READ SERIAL
   Serial.begin(115200);
- delay(100);
- // We start by connecting to a WiFi network
- Serial.println();
- Serial.println();
- Serial.print("Connecting to ");
- Serial.println(ssid);
+  Serial.println();
 
- WiFi.begin(ssid, password);
+  WiFi.begin("SPARK-PRR97E", "QVYJACQX39");
 
- while (WiFi.status() != WL_CONNECTED) {
- delay(500);
- Serial.print(".");
- }
- Serial.println("");
- Serial.println("WiFi connected");
- Serial.println("IP address: ");
- Serial.println(WiFi.localIP());
+  Serial.print("Connecting");
+  while (WiFi.status() != WL_CONNECTED)
+  {
+    delay(500);
+    Serial.print(".");
+  }
+  Serial.println();
+
+  Serial.print("Connected, IP address: ");
+  Serial.println(WiFi.localIP());
+
+  Serial.println("DB - Connecting...");
+   while (conn.connect(server_addr, 3306, user, password) != true) {
+     delay(500);
+     Serial.print ( "." );
+   }
 }
 
-int value = 0;
-
 void loop() {
-  // put your main code here, to run repeatedly:
-  delay(5000);
- ++value;
- Serial.print("connecting to ");
- Serial.println(host);
-
- // Use WiFiClient class to create TCP connections
- WiFiClient client;
- const int httpPort = 80;
- if (!client.connect(host, httpPort)) {
-  Serial.println("connection failed");
-  return;
- }
-
- // We now create a URI for the request
- String url = "/projects/index.html";
- Serial.print("Requesting URL: ");
- Serial.println(url);
-
- // This will send the request to the server
- client.print(String("GET ") + url + " HTTP/1.1\r\n" + "Host: " + host + "\r\n" + "Connection: close\r\n\r\n");
- delay(500);
-
- // Read all the lines of the reply from server and print them to Serial
- while(client.available()){
-  String line = client.readStringUntil('\r');
-  Serial.print(line);
- }
-
- Serial.println();
- Serial.println("closing connection");
+  Serial.print("TRAME");
 }
