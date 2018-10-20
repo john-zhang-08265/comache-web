@@ -7,13 +7,14 @@ CREATE TABLE Metric(
 );
 
 CREATE TABLE DeviceValue(
-	deviceID INTEGER NOT NULL,
+	deviceMac CHAR(17) NOT NULL,
 	measureID INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	timestamp TIMESTAMP NOT NULL,
 	value FLOAT NOT NULL,
 	rawValue FLOAT,
 	metricID INTEGER,
-	FOREIGN KEY (metricID) REFERENCES Metric(metricID));
+	FOREIGN KEY (metricID) REFERENCES Metric(metricID)
+);
 
 INSERT INTO Metric(name, unit) VALUES ('Temperature', '°C');
 INSERT INTO Metric(name, unit) VALUES ('Humidity', '%');
