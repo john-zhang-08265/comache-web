@@ -8,7 +8,7 @@
 //Write to database
 
 IPAddress server_addr;   // IP of the MySQL server
-String endpoint;
+const char* endpoint = "johns-rds.cuntunfadttt.ap-southeast-2.rds.amazonaws.com";
 char user[] = "root";                     // MySQL user login username
 char password[] = "root1234";    
 
@@ -34,7 +34,7 @@ void setup()
   Serial.print("Connecting");
   while (WiFi.status() != WL_CONNECTED)
   {
-    delay(500);
+    delay(1000);
     Serial.print(".");
   }
   Serial.println();
@@ -42,18 +42,19 @@ void setup()
   Serial.println(WiFi.localIP());
 
   //Ping RDS endpoint for IP address
-  Wifi.hostByName(endpoint, server_addr);
+  WiFi.hostByName(endpoint, server_addr);
 
   //Connect to AWS RDS through IP address
-  if server_addr {
-    Serial.println("DB - Connecting...");
+  if (server_addr) {
+    Serial.print("DB - Connecting... to IP ");
+    Serial.println(server_addr);
     while (conn.connect(server_addr, 3306, user, password) != true) {
       delay(1000);
       Serial.print ( "." );
     }
     Serial.print('CONNECTED TO AWS RDS INSTANCE');
     //WRITE TO DATABASE
-    String macAddr = Wifi.macAddress();
+    String macAddr = WiFi.macAddress();
 
   } else {
     //If either wifi or database fails to connect, store in buffer
@@ -61,15 +62,6 @@ void setup()
   //If sucess, purge buffer
   //
   //Sleep
-  
-
-
-  
-
-  
-
-  
-
   
 
   
