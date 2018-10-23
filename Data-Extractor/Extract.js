@@ -4,10 +4,10 @@ var fs = require('fs');
 var writeFileID = process.argv[2];
 
 var con = mysql.createConnection({
-  host: "localhost",
+  host: "johns-rds.cuntunfadttt.ap-southeast-2.rds.amazonaws.com",
   user: "root",
   password: "root1234",
-  database: "sensor_db"
+  database: "SmartHome_DEV"
 });
 
 con.connect(function(err) {
@@ -15,7 +15,7 @@ con.connect(function(err) {
   console.log("Connected!");
 });
 
-var queryString = "SELECT * FROM lightSensor LIMIT 100";
+var queryString = "SELECT * FROM DeviceValue";
 
 con.query(queryString, function(err, result) {
 
@@ -25,7 +25,7 @@ con.query(queryString, function(err, result) {
     var row = result[key];
     var timeValue = {
       x: row.timestamp,
-      y: row.brightness
+      y: row.value
     }
     data.push(timeValue)
   });

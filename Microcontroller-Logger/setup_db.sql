@@ -18,3 +18,12 @@ CREATE TABLE DeviceValue(
 
 INSERT INTO Metric(name, unit) VALUES ('Temperature', '°C');
 INSERT INTO Metric(name, unit) VALUES ('Humidity', '%');
+
+INSERT INTO DeviceValue(deviceMac, timestamp, value, rawValue, metricID)
+	VALUES ('test', '2018-10-23 10:00', 25, 5, 1);
+
+INSERT INTO DeviceValue(deviceMac, timestamp, value, rawValue, metricID)
+	VALUES ('test', '2018-10-23 11:00', 26, 5.2, 1);
+
+INSERT INTO DeviceValue(deviceMac, timestamp, value, rawValue, metricID)
+	VALUES ('test', '2018-10-23 12:00', 24, 4.8, 1);
