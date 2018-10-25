@@ -15,6 +15,7 @@ char password[] = "root1234";
 WiFiClient client;
 MySQL_Connection conn((Client *)&client);
 
+int temperaturePin = 0;
 
 void setup()
 {
@@ -23,9 +24,19 @@ void setup()
   Serial.println();
 
   //Read temperature data and time stamp (Using a moving average filter)
-  int deviceID = 1;
-  double val = 0; //READ SERIAL
-  double rawVal = 0;
+  Serial.println("Reading Values...");
+  double sum = 0;
+  for (int i = 0; i < 10; i++) {
+    int quantVal = analogRead(temperaturePin);
+    double rawVal = ((double)quantVal * 3.3)/1024;
+    sum += rawVal;
+  }
+  double finalVal = sum/5.0;
+
+  //MIGHT NEED TO CHANGE CALIBRATION PARAMETERS
+  double val = finalVal/10.0;
+  
+
 
   //Store data in buffer
 
@@ -56,8 +67,18 @@ void setup()
     //WRITE TO DATABASE
     String macAddr = WiFi.macAddress();
 
+    char USE_DB[] = "USE SmartHome_DEV";
+    char INSERT_SQL[] = "INSERT INTO DeviceValue VALUES"; //COMPLETE
+
+    MySQL_Cursor *cur_mem = new MySQL_Cursor(&conn);
+    cur_mem->execute(USE_DB);
+    Serial.println("Database Selected");
+    //cur_mem->execute(INSERT_SQL);
+    delete cur_mem;
+
   } else {
     //If either wifi or database fails to connect, store in buffer
+
   }
   //If sucess, purge buffer
   //
