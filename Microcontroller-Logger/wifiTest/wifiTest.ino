@@ -8,9 +8,9 @@
 //Write to database
 
 IPAddress server_addr;   // IP of the MySQL server
-const char* endpoint = "johns-rds.cuntunfadttt.ap-southeast-2.rds.amazonaws.com";
-char user[] = "root";                     // MySQL user login username
-char password[] = "root1234";    
+const char* endpoint = "";
+char user[] = "";                     // MySQL user login username
+char password[] = "";    
 
 WiFiClient client;
 MySQL_Connection conn((Client *)&client);
