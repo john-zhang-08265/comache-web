@@ -37,7 +37,4 @@ CREATE TABLE UserDevice(
 
 /*
 Undeployed database tables and operations
-
-
-
 */
