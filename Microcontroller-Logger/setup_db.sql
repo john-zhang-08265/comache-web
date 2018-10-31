@@ -27,3 +27,17 @@ INSERT INTO DeviceValue(deviceMac, timestamp, value, rawValue, metricID)
 
 INSERT INTO DeviceValue(deviceMac, timestamp, value, rawValue, metricID)
 	VALUES ('test', '2018-10-23 12:00', 24, 4.8, 1);
+
+CREATE TABLE UserDevice(
+	userID INTEGER NOT NULL,
+	deviceMac CHAR(17) NOT NULL,
+	registeredAt TIMESTAMP NOT NULL,
+	PRIMARY KEY (userID, deviceMac)
+);
+
+/*
+Undeployed database tables and operations
+
+
+
+*/
