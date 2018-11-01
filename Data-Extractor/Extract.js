@@ -2,6 +2,7 @@ var mysql = require('mysql');
 var fs = require('fs');
 
 var writeFileID = process.argv[2];
+var deviceMac = process.argv[3]
 
 var con = mysql.createConnection({
   host: "johns-rds.cuntunfadttt.ap-southeast-2.rds.amazonaws.com",
@@ -15,9 +16,8 @@ con.connect(function(err) {
   console.log("Connected!");
 });
 
-var queryString = "SELECT * FROM DeviceValue";
-
-con.query(queryString, function(err, result) {
+con.query(
+  "SELECT * FROM DeviceValue WHERE deviceMac = ?", [deviceMac], function(err, result) {
 
   var data = [];
 
