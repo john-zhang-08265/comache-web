@@ -26,6 +26,18 @@ CREATE TABLE DeviceValue(
 );
 
 /*
+STORED PROCEDURED
+*/
+DELIMITER //
+CREATE PROCEDURE AddSensorData(IN _deviceMac CHAR(17), IN _timestamp TIMESTAMP, IN _value FLOAT, IN _rawValue FLOAT, IN _metricID INTEGER)
+BEGIN
+IF (EXISTS (SELECT * FROM UserDevice WHERE deviceMac = _deviceMac)) THEN
+INSERT INTO DeviceValue(deviceMac, timestamp, value, rawValue, metricID) VALUES (_deviceMac, _timestamp, _value, _rawValue, _metricID);
+END IF;
+END //
+DELIMITER ;
+
+/*
 SAMPLE DATA FOR Metric
 */
 INSERT INTO Metric(name, unit) VALUES ('Temperature', '°C');
