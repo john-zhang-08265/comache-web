@@ -20,6 +20,12 @@
 
 		var _data_ = [];
 
+		
+		xmlhttp.open("GET", url, true);
+		xmlhttp.send();
+
+		//=====================================================
+
 		xmlhttp.onreadystatechange = function() {
 	    	if (this.readyState == 4 && this.status == 200) {
 	        	_data_ = JSON.parse(this.responseText);
@@ -27,8 +33,8 @@
 	        	DrawChart(InitialiseChart(_data_));
 	    	}
 		};
-		xmlhttp.open("GET", url, true);
-		xmlhttp.send();
+
+		//======================================================
 
 		function InitialiseChart(_data) {
 			var config = {

@@ -64,6 +64,7 @@ void setup()
       Serial.print ( "." );
     }
     Serial.print('CONNECTED TO AWS RDS INSTANCE');
+    
     //WRITE TO DATABASE
     String macAddr = WiFi.macAddress();
 
